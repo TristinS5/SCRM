@@ -20,3 +20,5 @@ MonoBehaviour:
   jumpMax: 3
   jumpForce: 12
   Gravity: 35
+  weapons: []
+  currentWeapon: {fileID: 2153562431145074750, guid: 8c1214db3085df24db0105d55c1d8736, type: 3}

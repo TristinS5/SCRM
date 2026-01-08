@@ -1,23 +1,41 @@
-using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine.AI;
 
 public class playerController : MonoBehaviour
 {
+    [Header("Player")]
     [SerializeField] CharacterController player;
+    public Camera playerCam;
     [SerializeField] LayerMask ignoreLayer;
     [SerializeField] playerInfo playerInfo;
 
     Vector3 moveDir;
 
     enum shootingtype { shooting, none }
+    [Header("Shooting")]
     [SerializeField] shootingtype Shootingtype;
-    [SerializeField] GameObject gunModel;
+    public GameObject gunModel;
     [SerializeField] int shootDist;
     [SerializeField] int shootDamage;
-    //[SerializeField] GameObject playerObj;
 
-    public Camera playerCam;
+    /*
+    enum shootchoice { shootraycast, spellList, teleportraycast }
+    [SerializeField] shootchoice choice;
+    public List<spellStats> spellList = new List<spellStats>();
+    [SerializeField] GameObject spellModel;
+    [SerializeField] GameObject spell;
+    [SerializeField] Transform shootPos;
+    [SerializeField] int shootDamage;
+    [SerializeField] int shootDist;
+    [SerializeField] float shootRate;
+    float shootTimer;
+    public int spellListPos;
+    public bool canShoot = true;
+    */
+
 
     [SerializeField] float shootRate;
     float shootTimer;
@@ -30,6 +48,8 @@ public class playerController : MonoBehaviour
     void Start()
     {
         playerInfo.origSpeed = playerInfo.Speed;
+        //gunModel.GetComponent<MeshFilter>().sharedMesh = playerInfo.currentWeapon.GetComponent<MeshFilter>().sharedMesh;
+        //gunModel.GetComponent<MeshRenderer>().sharedMaterial = playerInfo.currentWeapon.GetComponent<MeshRenderer>().sharedMaterial;
     }
 
     // Update is called once per frame

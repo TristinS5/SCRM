@@ -25,6 +25,7 @@ public class weaponToColorMatch : MonoBehaviour, IDamage
 
     public void TakeDamage(int amount)
     {
+        Debug.Log("Weapon required: " + weaponRequired.name + " | Current weapon: " + playerInfo.currentWeapon.name);
         if (weaponRequired = playerInfo.currentWeapon)
         {
         HP -= amount;
