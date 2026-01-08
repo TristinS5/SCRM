@@ -1,15 +1,20 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class playerController : MonoBehaviour
 {
     [SerializeField] CharacterController player;
+    [SerializeField] LayerMask ignoreLayer;
     [SerializeField] playerInfo playerInfo;
 
     Vector3 moveDir;
 
     enum shootingtype { shooting, none }
     [SerializeField] shootingtype Shootingtype;
+    [SerializeField] GameObject gunModel;
+    [SerializeField] int shootDist;
+    [SerializeField] int shootDamage;
     //[SerializeField] GameObject playerObj;
 
     public Camera playerCam;
@@ -83,7 +88,19 @@ public class playerController : MonoBehaviour
     void shoot()
     {
         shootTimer = 0;
-        //player.transform.Rotate(0, 0, 45f);
+
+        RaycastHit hit;
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDist, ~ignoreLayer))
+        {
+            //Instantiate(gunList[gunListPos].hitEffect, hit.point, Quaternion.identity);
+
+            IDamage dmg = hit.collider.GetComponent<IDamage>();
+
+            if (dmg != null)
+            {
+                dmg.TakeDamage(shootDamage);
+            }
+        }
     }
 
     void wallclimbing() { }

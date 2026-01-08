@@ -18,4 +18,8 @@ public class playerInfo : ScriptableObject
     public int jumpMax;
     public int jumpForce;
     public int Gravity;
+
+    [Header("Weapons")]
+    public List<GameObject> weapons;
+    public GameObject currentWeapon;
 }
