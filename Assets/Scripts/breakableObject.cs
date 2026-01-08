@@ -27,6 +27,7 @@ public class breakableObject : MonoBehaviour,IDamage
 
         if (HP <= 0)
         {
+            Debug.Log("Destroy in BreakableObject");
             Destroy(gameObject);
         }
         else
