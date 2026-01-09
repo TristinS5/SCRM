@@ -3,8 +3,10 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.AI;
+using static UnityEngine.Rendering.DebugUI;
+using UnityEditor.Experimental.GraphView;
 
-public class playerController : MonoBehaviour
+public class playerController : MonoBehaviour, IPickup
 {
     [Header("Player")]
     [SerializeField] CharacterController player;
@@ -16,14 +18,19 @@ public class playerController : MonoBehaviour
 
     enum shootingtype { shooting, none }
     [Header("Shooting")]
+    public List<WeaponStats> weaponlist = new List<WeaponStats>();
     [SerializeField] shootingtype Shootingtype;
     public GameObject gunModel;
+    [SerializeField] Transform shootPos;
     [SerializeField] int shootDist;
     [SerializeField] int shootDamage;
+    [SerializeField] float shootRate;
+    float shootTimer;
+    public int spellListPos;
+    public bool canShoot = true;
+
 
     /*
-    enum shootchoice { shootraycast, spellList, teleportraycast }
-    [SerializeField] shootchoice choice;
     public List<spellStats> spellList = new List<spellStats>();
     [SerializeField] GameObject spellModel;
     [SerializeField] GameObject spell;
@@ -35,10 +42,6 @@ public class playerController : MonoBehaviour
     public int spellListPos;
     public bool canShoot = true;
     */
-
-
-    [SerializeField] float shootRate;
-    float shootTimer;
 
     int jumpCount;
     Vector3 playerVel;
@@ -82,6 +85,8 @@ public class playerController : MonoBehaviour
 
         player.Move(playerVel * Time.deltaTime);
         playerVel.y -= playerInfo.Gravity * Time.deltaTime;
+
+        selectSpell();
     }
 
     void jump()
@@ -125,4 +130,73 @@ public class playerController : MonoBehaviour
 
     void wallclimbing() { }
 
+    void selectSpell()
+    {
+        if (Input.GetAxis("Mouse ScrollWheel") > 0 && spellListPos < weaponlist.Count - 1)
+        {
+            spellListPos++;
+            changeSpell();
+        }
+        if (Input.GetAxis("Mouse ScrollWheel") < 0 && spellListPos > 0)
+        {
+            spellListPos--;
+            changeSpell();
+        }
+        if (Input.anyKeyDown)
+        {
+            for (int i = 0; i <= 6; i++)
+            {
+                KeyCode key = KeyCode.Alpha0 + i;
+
+                if (Input.GetKeyDown(key) && spellListPos < weaponlist.Count && weaponlist.Count != 1)
+                {
+                    int spellpos = i - 1;
+                    spellListPos = spellpos;
+                    changeSpell();
+                }
+            }
+        }
+        //listsTracker.spellListPos = spellListPos;
+    }
+    void changeSpell()
+    {
+        shootDamage = weaponlist[spellListPos].shootDMG;
+
+        shootDist = weaponlist[spellListPos].shootDist;
+        shootRate = weaponlist[spellListPos].shootRate;
+
+        playerInfo.currentWeapon = weaponlist[spellListPos].model;
+
+        gunModel.GetComponent<MeshFilter>().sharedMesh = weaponlist[spellListPos].model.GetComponent<MeshFilter>().sharedMesh;
+        gunModel.GetComponent<MeshRenderer>().sharedMaterial = weaponlist[spellListPos].model.GetComponent<MeshRenderer>().sharedMaterial;
+
+        //if (spellList[spellListPos] != null)
+        //    listsTracker.spellList.Add(spellList[spellListPos]);
+    }
+
+    public void GetWeaponStats(WeaponStats weapon)
+    {
+        if (weapon.spellCheck == false)
+        {
+            Debug.Log("In if GWS");
+            //listsTracker.spellList.Add(weapon);
+            weaponlist.Add(weapon);
+        spellListPos = weaponlist.Count - 1;
+
+        changeSpell();
+        weapon.spellCheck = true;
+
+        //if (!Cheatmanager.instance.DescriptionCheat)
+        //    gameManager.instance.DisplayDescription(this.weapon.spellManual);
+        }
+
+        //if (Cheatmanager.instance.spellCheat == true)
+        //{
+        //    spellList.Add(this.weapon);
+        //    spellListPos = listsTracker.spellList.Count;
+
+        //    changeSpell();
+        //    this.weapon.spellCheck = false;
+        //}
+    }
 }

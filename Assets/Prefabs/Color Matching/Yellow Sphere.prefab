@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   model: {fileID: 7062034787938551959}
-  weaponRequired: {fileID: 0}
+  weaponStatsRequired: {fileID: 11400000, guid: 386896cbfef27e84189f7734a3875c5e, type: 2}
   playerInfo: {fileID: 11400000, guid: eafa230e88412674dbc343b4a0ff1426, type: 2}
   HP: 1
 --- !u!33 &8489498488805193094

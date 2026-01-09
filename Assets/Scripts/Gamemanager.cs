@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEditor.Build;
 using UnityEngine;
 
@@ -17,6 +18,8 @@ public class Gamemanager : MonoBehaviour
     public bool isPaused;
     float timeScaleOrig;
 
+    public List<WeaponStats> weaponsList = new List<WeaponStats>();
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
@@ -27,6 +30,11 @@ public class Gamemanager : MonoBehaviour
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+
+        for (int i = 0; i < weaponsList.Count; i++)
+        {
+            weaponsList[i].spellCheck = false;
+        }
     }
 
     // Update is called once per frame
