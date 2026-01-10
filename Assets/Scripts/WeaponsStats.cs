@@ -6,7 +6,7 @@ public class WeaponStats : ScriptableObject
     public GameObject model;
     //public GameObject spellProjectile;
 
-    [Header("Spell Stats")]
+    [Header("Weapon Stats")]
     [Range(0, 20)] public int shootDMG;
     [Range(0.0f, 25.0f)] public float shootRate;
     [Range(1, 1000)] public int shootDist;

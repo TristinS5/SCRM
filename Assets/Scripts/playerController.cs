@@ -6,8 +6,10 @@ using UnityEngine.AI;
 using static UnityEngine.Rendering.DebugUI;
 using UnityEditor.Experimental.GraphView;
 
-public class playerController : MonoBehaviour, IPickup
+public class playerController : MonoBehaviour, IInteraction, IPickup
 {
+    public static playerController instance;
+
     [Header("Player")]
     [SerializeField] CharacterController player;
     public Camera playerCam;
@@ -50,6 +52,7 @@ public class playerController : MonoBehaviour, IPickup
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        instance = this;
         playerInfo.origSpeed = playerInfo.Speed;
         //gunModel.GetComponent<MeshFilter>().sharedMesh = playerInfo.currentWeapon.GetComponent<MeshFilter>().sharedMesh;
         //gunModel.GetComponent<MeshRenderer>().sharedMaterial = playerInfo.currentWeapon.GetComponent<MeshRenderer>().sharedMaterial;
@@ -58,6 +61,8 @@ public class playerController : MonoBehaviour, IPickup
     // Update is called once per frame
     void Update()
     {
+        Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDist, Color.red);
+
         movement();
         sprint();
     }
@@ -102,7 +107,7 @@ public class playerController : MonoBehaviour, IPickup
     {
         if (Input.GetButtonDown("Sprint"))
         {
-            playerInfo.Speed = playerInfo.origSpeed * playerInfo.sprintMod;
+            playerInfo.Speed = playerInfo.origSpeed + playerInfo.sprintMod;
         }
         if (Input.GetButtonUp("Sprint"))
         {

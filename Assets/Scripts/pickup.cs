@@ -17,18 +17,22 @@ public class pickup : MonoBehaviour
     {
 
     }
+
+
     private void OnTriggerEnter(Collider other)
 	{
         //if (other.CompareTag("Player") && aud != null)
         //{
         //    aud.PlayOneShot(audPick[Random.Range(0, audPick.Length)], audPickVol);
         //}
+
         IPickup toPickup = other.GetComponent<IPickup>();
 
-		if (toPickup != null)
-		{
-			if (type == pickupType.weapon)
-			{
+		
+		if (toPickup != null) //checks to see if the other object has the IPickup
+        {
+			if (type == pickupType.weapon) //checks if the pickup is a weapon
+            {
 				toPickup.GetWeaponStats(weapon);
 			}
 			//else if (type == pickupType.item)
@@ -37,15 +41,16 @@ public class pickup : MonoBehaviour
 			//	toPickup.GetItemStats(item);
 			//}
 			
-		}
-	}
-
-	private void OnTriggerExit(Collider other)
-	{
-		if (other.CompareTag("Player"))
-		{
-			//aud.PlayOneShot(audPick[Random.Range(0, audPick.Length)], audPickVol);
 			Destroy(gameObject);
 		}
 	}
+
+	//private void OnTriggerExit(Collider other) // After Picking up and walking away
+	//{
+	//	if (other.CompareTag("Player"))
+	//	{
+	//		//aud.PlayOneShot(audPick[Random.Range(0, audPick.Length)], audPickVol);
+	//		//Destroy(gameObject);
+	//	}
+	//}
 }
