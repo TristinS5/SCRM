@@ -16,9 +16,9 @@ MonoBehaviour:
   CurrentHP: 0
   origSpeed: 10
   Speed: 10
-  sprintMod: 3
+  sprintMod: 20
   jumpMax: 3
   jumpForce: 12
   Gravity: 35
   weapons: []
-  currentWeapon: {fileID: 0}
+  currentWeapon: {fileID: 5148771701169044860, guid: 5feea3e8f6cb82d45bbc81b3961f20a0, type: 3}

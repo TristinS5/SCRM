@@ -61,7 +61,9 @@ public class playerController : MonoBehaviour, IInteraction, IPickup
     // Update is called once per frame
     void Update()
     {
+
         Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDist, Color.red);
+        Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * 20, Color.black);
 
         movement();
         sprint();
@@ -183,16 +185,15 @@ public class playerController : MonoBehaviour, IInteraction, IPickup
     {
         if (weapon.spellCheck == false)
         {
-            Debug.Log("In if GWS");
             //listsTracker.spellList.Add(weapon);
             weaponlist.Add(weapon);
-        spellListPos = weaponlist.Count - 1;
+            spellListPos = weaponlist.Count - 1;
 
-        changeSpell();
-        weapon.spellCheck = true;
+            changeSpell();
+            weapon.spellCheck = true;
 
-        //if (!Cheatmanager.instance.DescriptionCheat)
-        //    gameManager.instance.DisplayDescription(this.weapon.spellManual);
+            //if (!Cheatmanager.instance.DescriptionCheat)
+            //    gameManager.instance.DisplayDescription(this.weapon.spellManual);
         }
 
         //if (Cheatmanager.instance.spellCheat == true)

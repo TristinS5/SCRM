@@ -51,7 +51,7 @@ public class SelectionSpawner : MonoBehaviour
         if (weaponsList != null && type == spawntype.Enemies || type == spawntype.PickUps)
         {
             spawnObject = weaponsList[objectListPos].model;
-            Debug.Log("Changed to " + weaponsList[objectListPos].model.name);
+            
             weaponName.text = weaponsList[objectListPos].model.name;
 
             if (weaponsList[objectListPos].sprite != null)
