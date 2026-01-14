@@ -5,6 +5,7 @@ public class weaponToColorMatch : MonoBehaviour, IDamage
 {
     [SerializeField] Renderer model;
     [SerializeField] WeaponStats weaponStatsRequired;
+    [SerializeField] WeaponStats weaponStatsRequired2;
     [SerializeField] playerInfo playerInfo;
 
     [SerializeField] int HP;
@@ -27,7 +28,7 @@ public class weaponToColorMatch : MonoBehaviour, IDamage
     {
         Debug.Log("Weapon required: " + weaponStatsRequired.model.name + " | Current weapon: " + playerInfo.currentWeapon.name);
         Debug.Log("GameObject Name " + gameObject.name);
-        if (weaponStatsRequired.model == playerInfo.currentWeapon)
+        if (weaponStatsRequired.model == playerInfo.currentWeapon || weaponStatsRequired2.model == playerInfo.currentWeapon)
         {
         HP -= amount;
 

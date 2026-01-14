@@ -40,13 +40,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1901461990055869878}
-  - component: {fileID: -1795970579535481022}
+  - component: {fileID: 2659151948275066510}
   - component: {fileID: 4531356348622312624}
   - component: {fileID: 5703075595090464316}
   - component: {fileID: 3944378243251323118}
   - component: {fileID: 1038565525389119075}
   m_Layer: 3
-  m_Name: Player 1
+  m_Name: Main Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -68,7 +68,7 @@ Transform:
   - {fileID: 2288383127976024690}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 177.93, z: 0}
---- !u!114 &-1795970579535481022
+--- !u!114 &2659151948275066510
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -77,13 +77,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 1813122186319802432}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 871fb97ac5da99f409730e7407912a2e, type: 3}
+  m_Script: {fileID: 11500000, guid: 52c9d7a1860a2c44493cb288b754f36f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sens: 0
-  lockVertMin: 0
-  lockVertMax: 0
-  invertY: 0
+  player: {fileID: 3944378243251323118}
+  playerCam: {fileID: 4139840839149938585}
+  ignoreLayer:
+    serializedVersion: 2
+    m_Bits: 4
+  playerInfo: {fileID: 11400000, guid: eafa230e88412674dbc343b4a0ff1426, type: 2}
+  weaponlist: []
+  Shootingtype: 0
+  gunModel: {fileID: 6218788031528793982}
+  shootPos: {fileID: 3579017854613924312}
+  shootDist: 0
+  shootDamage: 0
+  shootRate: 0
+  spellListPos: 0
+  canShoot: 1
 --- !u!33 &4531356348622312624
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -268,6 +279,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2288383127976024690}
+  - component: {fileID: 1141904541946508939}
   - component: {fileID: 4139840839149938585}
   - component: {fileID: 2394002661387822825}
   - component: {fileID: 3121431730247541826}
@@ -295,6 +307,22 @@ Transform:
   - {fileID: 951772502941179787}
   m_Father: {fileID: 1901461990055869878}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1141904541946508939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6066180278456119941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 871fb97ac5da99f409730e7407912a2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sens: 300
+  lockVertMin: -90
+  lockVertMax: 90
+  invertY: 0
 --- !u!20 &4139840839149938585
 Camera:
   m_ObjectHideFlags: 0
@@ -425,13 +453,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6218788031528793982}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.4470704, y: -0.02306744, z: 0.04607669, w: 0.8930134}
-  m_LocalPosition: {x: 0.5931676, y: -0.66168594, z: 0.72541225}
+  m_LocalRotation: {x: -0.063732624, y: -0.99537474, z: 0.071840316, w: 0.0024905147}
+  m_LocalPosition: {x: 0.65758306, y: -0.43754983, z: 0.8902197}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2288383127976024690}
-  m_LocalEulerAnglesHint: {x: 53.188, y: 0, z: 5.907}
+  m_LocalEulerAnglesHint: {x: 8.204, y: -179.183, z: 7.386}
 --- !u!33 &4767757178532787288
 MeshFilter:
   m_ObjectHideFlags: 0

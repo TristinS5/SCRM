@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4679952212bcb7c48b6fd9f89c05547d, type: 3}
   m_Name: ARStats
   m_EditorClassIdentifier: 
-  model: {fileID: 4368099249546746312, guid: ed78e05dc8f96ea40b5cda4ce5900ac8, type: 3}
+  model: {fileID: 4368099249546746312, guid: dd3021436d06de64a892ad4567f1abbc, type: 3}
   shootDMG: 1
   shootRate: 0.5
   shootDist: 20

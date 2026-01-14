@@ -30,4 +30,14 @@ public class cameraController : MonoBehaviour
         transform.localRotation = Quaternion.Euler(rotX, 0, 0);
         transform.parent.Rotate(Vector3.up * mouseX);
     }
+
+    public void SetSens(int newSens)
+    {
+        sens = newSens;
+    }
+
+    public void SetFov(int newFov)
+    {
+        Camera.main.fieldOfView = newFov;
+    }
 }

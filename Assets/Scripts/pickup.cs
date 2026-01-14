@@ -25,7 +25,7 @@ public class pickup : MonoBehaviour
         //{
         //    aud.PlayOneShot(audPick[Random.Range(0, audPick.Length)], audPickVol);
         //}
-
+		//Debug.Log("Collided with " + other.name);
         IPickup toPickup = other.GetComponent<IPickup>();
 
 		
@@ -33,7 +33,8 @@ public class pickup : MonoBehaviour
         {
 			if (type == pickupType.weapon) //checks if the pickup is a weapon
             {
-				toPickup.GetWeaponStats(weapon);
+                //Debug.Log("Picked up a weapon");
+                toPickup.GetWeaponStats(weapon);
 			}
 			//else if (type == pickupType.item)
 			//{

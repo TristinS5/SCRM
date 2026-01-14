@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6942615170474145436}
   - component: {fileID: 1015223658963338002}
   - component: {fileID: 5807698525440931344}
-  - component: {fileID: 7763531152373057925}
+  - component: {fileID: 2152031426826887027}
   m_Layer: 0
   m_Name: Sniper
   m_TagString: Untagged
@@ -28,13 +28,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5148771701169044860}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.287, y: 1.89, z: 0.179}
-  m_LocalScale: {x: 0.25, y: 0.5, z: 0.25}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6942615170474145436
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -42,7 +42,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5148771701169044860}
-  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: -8310518740751045040, guid: 966f97b097ce4f84184148f1d079cdba, type: 3}
 --- !u!114 &1015223658963338002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56,7 +56,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  weapon: {fileID: 11400000, guid: 6aa2ad31e80460745bbd483e522ce859, type: 2}
+  weapon: {fileID: 11400000, guid: 48117baf115c6b945b72432275b9fa71, type: 2}
   aud: {fileID: 0}
   audPick: []
   audPickVol: 0
@@ -105,8 +105,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &7763531152373057925
-CapsuleCollider:
+--- !u!65 &2152031426826887027
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -123,8 +123,6 @@ CapsuleCollider:
   m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+  serializedVersion: 3
+  m_Size: {x: 0.11444324, y: 0.36966306, z: 1.9748361}
+  m_Center: {x: -0.0028675273, y: 0.075677365, z: -0.5931345}

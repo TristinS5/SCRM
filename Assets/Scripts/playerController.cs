@@ -167,6 +167,7 @@ public class playerController : MonoBehaviour, IInteraction, IPickup
     }
     void changeSpell()
     {
+        //Debug.Log("In change Spell");
         shootDamage = weaponlist[spellListPos].shootDMG;
 
         shootDist = weaponlist[spellListPos].shootDist;
@@ -174,6 +175,7 @@ public class playerController : MonoBehaviour, IInteraction, IPickup
 
         playerInfo.currentWeapon = weaponlist[spellListPos].model;
 
+        //Debug.Log("Setting MeshFilter and MeshRenderer");
         gunModel.GetComponent<MeshFilter>().sharedMesh = weaponlist[spellListPos].model.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = weaponlist[spellListPos].model.GetComponent<MeshRenderer>().sharedMaterial;
 
@@ -186,6 +188,7 @@ public class playerController : MonoBehaviour, IInteraction, IPickup
         if (weapon.spellCheck == false)
         {
             //listsTracker.spellList.Add(weapon);
+            //Debug.Log("Picked up a new Weapon: " + weapon.name);
             weaponlist.Add(weapon);
             spellListPos = weaponlist.Count - 1;
 

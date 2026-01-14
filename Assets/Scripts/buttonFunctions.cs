@@ -20,6 +20,11 @@ public class buttonFunctions : MonoBehaviour
         Gamemanager.instance.Settings();
     }
 
+    public void back()
+    {
+        Gamemanager.instance.Back();
+    }
+
     public void quit()
     {
 #if UNITY_EDITOR

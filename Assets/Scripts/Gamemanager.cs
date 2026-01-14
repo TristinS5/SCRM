@@ -81,4 +81,15 @@ public class Gamemanager : MonoBehaviour
             menuActive.SetActive(true);
         }
     }
+
+    public void Back()
+    {
+        if (menuActive == menuSetting)
+        {
+            menuActive.SetActive(false);
+            menuActive = null;
+            menuActive = menuPause;
+            menuActive.SetActive(true);
+        }
+    }
 }
