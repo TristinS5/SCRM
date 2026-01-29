@@ -34,7 +34,7 @@ public class weaponToColorMatch : MonoBehaviour, IDamage
 
             if (HP <= 0)
             {
-
+                gameObject.SetActive(false);
                 Destroy(gameObject);
             }
             else
