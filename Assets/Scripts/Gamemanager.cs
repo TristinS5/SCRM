@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using UnityEditor.Build;
+using TMPro;
 using UnityEngine;
 
 public class Gamemanager : MonoBehaviour
@@ -11,14 +11,20 @@ public class Gamemanager : MonoBehaviour
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
     [SerializeField] GameObject menuSetting;
+    [SerializeField] GameObject TimerObj;
+    [SerializeField] TextMeshProUGUI timerText;
+    [SerializeField] GameObject TimerTextObj;
+    [SerializeField] GameObject NewPB;
 
     public GameObject player;
     public playerController playerScript;
 
     public bool isPaused;
+    public bool isTimer;
     float timeScaleOrig;
 
     public List<WeaponStats> weaponsList = new List<WeaponStats>();
+    public LevelStats levelStats;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
@@ -35,6 +41,11 @@ public class Gamemanager : MonoBehaviour
         {
             weaponsList[i].spellCheck = false;
         }
+
+        //levelStats.isTimed1 = false;
+        //levelStats.isTimed2 = false;
+        //levelStats.isTimed3 = false;
+        //levelStats.isTimed4 = false;
     }
 
     // Update is called once per frame
@@ -59,6 +70,7 @@ public class Gamemanager : MonoBehaviour
         Time.timeScale = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+        playerController.instance.enabled = false;
     }
 
     public void StateUnpause()
@@ -69,11 +81,12 @@ public class Gamemanager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         menuActive.SetActive(false);
         menuActive = null;
+        playerController.instance.enabled = true;
     }
 
     public void Settings()
     {
-        if(menuActive == menuPause)
+        if (menuActive == menuPause)
         {
             menuActive.SetActive(false);
             menuActive = null;
@@ -90,6 +103,46 @@ public class Gamemanager : MonoBehaviour
             menuActive = null;
             menuActive = menuPause;
             menuActive.SetActive(true);
+        }
+    }
+
+    public void TimerCheck()
+    {
+        isTimer = !isTimer;
+        TimerObj.SetActive(isTimer);
+    }
+
+    public void StateWin()
+    {
+        menuActive = menuWin;
+        menuActive.SetActive(true);
+        Time.timeScale = 0;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        int PB = playerController.instance.playerInfo.PBTime;
+
+        if (PB == 0)
+        {
+            playerController.instance.playerInfo.PBTime = Timer.instance.CurrentTime;
+            timerText.text = Timer.instance.timerText.text;
+            NewPB.SetActive(true);
+        }
+        else if (Timer.instance.CurrentTime < PB)
+        {
+            playerController.instance.playerInfo.PBTime = Timer.instance.CurrentTime;
+            timerText.text = Timer.instance.timerText.text;
+            NewPB.SetActive(true);
+        }
+        else if (Timer.instance.CurrentTime > PB)
+        {
+            int minutes = Mathf.FloorToInt(PB / 60f);
+            int seconds = Mathf.FloorToInt(PB % 60f);
+            timerText.text = string.Format("PB {0:00}:{1:00}", minutes, seconds);
+            NewPB.SetActive(false);
+            TimerTextObj.transform.position 
+                = new Vector3(TimerTextObj.transform.position.x - 70,
+                TimerTextObj.transform.position.y, 
+                TimerTextObj.transform.position.z);
         }
     }
 }

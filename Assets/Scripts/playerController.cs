@@ -1,10 +1,5 @@
-using Unity.VisualScripting;
 using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.AI;
-using static UnityEngine.Rendering.DebugUI;
-using UnityEditor.Experimental.GraphView;
 
 public class playerController : MonoBehaviour, IInteraction, IPickup
 {
@@ -14,7 +9,7 @@ public class playerController : MonoBehaviour, IInteraction, IPickup
     [SerializeField] CharacterController player;
     public Camera playerCam;
     [SerializeField] LayerMask ignoreLayer;
-    [SerializeField] playerInfo playerInfo;
+    public playerInfo playerInfo;
 
     Vector3 moveDir;
 

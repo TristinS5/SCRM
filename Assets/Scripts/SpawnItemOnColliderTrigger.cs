@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using System.Linq;
 
 public class SpawnItemOnColliderTrigger : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class SpawnItemOnColliderTrigger : MonoBehaviour
     bool HasSpawnedOnce = false;
     [SerializeField] List<BoxCollider> spawnAreas = new List<BoxCollider>();
     [SerializeField] List<GameObject> wantToSpawnList = new List<GameObject>();
+    [SerializeField] List<GameObject> SpawnedObjects = new List<GameObject>();
+    [SerializeField] GameObject Wall;
     enum SpawnType
     {
         Yellow,
@@ -16,6 +19,17 @@ public class SpawnItemOnColliderTrigger : MonoBehaviour
         All
     }
     [SerializeField] SpawnType spawnType;
+
+    //[SerializeField] LevelStats levelStats;
+    //enum LevelType
+    //{
+    //    Stage1,
+    //    Stage2,
+    //    Stage3,
+    //    Stage4
+    //}
+    //[SerializeField] LevelType levelType;
+
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -30,6 +44,51 @@ public class SpawnItemOnColliderTrigger : MonoBehaviour
         if (playerInTrigger)
         {
             Spawn();
+        }
+
+        for (int i = 0; i < SpawnedObjects.Count; i++)
+        {
+            if(SpawnedObjects[i] == null)
+            {
+                SpawnedObjects.RemoveAt(i);
+            }
+        }
+
+        if(SpawnedObjects.Count == 0 && HasSpawnedOnce)
+        {
+            //switch((int)levelType)
+            //{
+            //    case 0:
+            //        if(levelStats.isTimed1 == false)
+            //        {
+            //        levelStats.Stage1Time = Timer.instance.CurrentTime;
+            //            levelStats.isTimed1 = true;
+            //        }
+            //        break;
+            //    case 1:
+            //        if (levelStats.isTimed2 == false)
+            //        {
+            //            levelStats.Stage2Time = Timer.instance.CurrentTime - levelStats.Stage1Time;
+            //            levelStats.isTimed2 = true;
+            //        }
+            //        break;
+            //    case 2:
+            //        if (levelStats.isTimed3 == false)
+            //        {
+            //            levelStats.Stage3Time = Timer.instance.CurrentTime - levelStats.Stage2Time;
+            //            levelStats.isTimed3 = true;
+            //        }
+            //        break;
+            //    case 3:
+            //        if (levelStats.isTimed4 == false)
+            //        {
+            //            levelStats.Stage4Time = Timer.instance.CurrentTime - levelStats.Stage3Time;
+            //            levelStats.isTimed4 = true;
+            //        }
+            //        break;
+            //}
+
+            Wall.SetActive(false);
         }
     }
 
@@ -56,8 +115,8 @@ public class SpawnItemOnColliderTrigger : MonoBehaviour
                     Random.Range(center.y - size.y / 2, center.y + size.y / 2),
                     Random.Range(center.z - size.z / 2, center.z + size.z / 2)
                 );
-
-            Instantiate(wantToSpawn, randomPos, Quaternion.identity);
+            SpawnedObjects.Add(
+            Instantiate(wantToSpawn, randomPos, Quaternion.identity));
         }
         HasSpawnedOnce = true;
         playerInTrigger = false;

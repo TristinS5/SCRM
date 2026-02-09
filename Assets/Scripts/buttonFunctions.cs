@@ -13,6 +13,10 @@ public class buttonFunctions : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         Gamemanager.instance.StateUnpause();
+        if(playerController.instance.playerInfo.Speed > playerController.instance.playerInfo.origSpeed)
+        {
+            playerController.instance.playerInfo.Speed = playerController.instance.playerInfo.origSpeed;
+        }
     }
 
     public void settings()
@@ -23,6 +27,11 @@ public class buttonFunctions : MonoBehaviour
     public void back()
     {
         Gamemanager.instance.Back();
+    }
+
+    public void TimerCheck()
+    {
+        Gamemanager.instance.TimerCheck();
     }
 
     public void quit()

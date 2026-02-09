@@ -22,4 +22,6 @@ public class playerInfo : ScriptableObject
     [Header("Weapons")]
     public List<GameObject> weapons;
     public GameObject currentWeapon;
+
+    public int PBTime;
 }
