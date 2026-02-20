@@ -20,6 +20,11 @@ public class buttonFunctions : MonoBehaviour
         Gamemanager.instance.Settings();
     }
 
+    public void nextLevel()
+    {
+        //SceneManager.LoadScene(SceneManager.)
+    }
+
     public void quit()
     {
 #if UNITY_EDITOR
